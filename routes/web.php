@@ -11,22 +11,30 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
-Route::get('/about', function () {
-    return view('about');
-});
+//If your route only needs to return a view
+Route::view('/home', 'home');
 
-Route::get('/pricing', function () {
-    return view('pricing');
-});
+Route::view('/about', 'about');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::view('/pricing', 'pricing');
+
+Route::view('/contact', 'contact');
+
+
+// controllers
+Route::resource('/users', 'UserController');
+// Route::get('/users', 'UserController@index');
+// Route::post('/users', 'UserController@store');
+// Route::get('/users/create', 'UserController@create');
+
+
