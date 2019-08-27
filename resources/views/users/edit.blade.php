@@ -6,37 +6,47 @@
 
 <h1>Edit Users</h1>
 
-<form method="POST" action="/users/{{ $user->id }}">
+<form method="POST" action="{{ url('users') }}/{{ $user->id }}">
 
 	@method('PATCH')
 	@csrf
 
-	<div>
+	<div class="form-group">
 		<label>Name</label><br>
-		<input type="text" name="name" placeholder="name" value='{{ $user->name }}'>
+		<input class="form-control" type="text" name="name" placeholder="name" value='{{ $user->name }}'>
+		<small id="nameHelpBlock" class="form-text text-muted">
+  			Your name must be 2-20 characters long.
+		</small>
 	</div>
 
-	<div>
+	<div class="form-group">
 		<label>Lastname</label><br>
-		<input type="text" name="lastname" placeholder="Lastname" value='{{ $user->lastname }}'>
+		<input class="form-control" type="text" name="lastname" placeholder="Lastname" value='{{ $user->lastname }}'>
+			<small id="nameHelpBlock" class="form-text text-muted">
+  			Your lastname must be 2-20 characters long.
+		</small>
 	</div>
 
-	<div>
+	<div class="form-group">
 		<label>Email</label><br>
-		<input type="text" name="email" placeholder="Email" value='{{ $user->email }}'>
+		<input class="form-control" type="text" name="email" placeholder="Email" value='{{ $user->email }}'>
+		<small id="nameHelpBlock" class="form-text text-muted">
+  			Your email must be 5-30 characters long and contain @.
+		</small>
 	</div>
 	<br>
 	<div>
-		<button type='submit'>Confirm</button>
+		<button class="btn btn-dark btn-lg" type='submit'>Confirm</button>
 	</div>
+	
 </form>
 
-<form method="POST" action="/users/{{$user->id}}" style="margin-top: 10px;">
+<form method="POST" action="{{ url('users') }}/{{$user->id}}" style="margin-top: 10px;">
 	@method('DELETE')
 	@csrf
 
 	<div>
-		<button type="submit">Delete User</button>
+		<button class="btn btn-danger btn-lg" type="submit">Delete User</button>
 	</div>
 </form>
 

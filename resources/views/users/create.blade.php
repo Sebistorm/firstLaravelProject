@@ -6,7 +6,7 @@
 
 <h1>Create Users</h1>
 
-<form method="POST" action="/users">
+<form method="POST" action="{{ url('users') }}">
 	@csrf
 
 	<div>
