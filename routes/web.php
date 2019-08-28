@@ -14,7 +14,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // Route::get('/home', function () {
@@ -29,6 +29,11 @@ Route::view('/about', 'about');
 Route::view('/pricing', 'pricing');
 
 Route::view('/contact', 'contact');
+
+Route::fallback(function () {
+     return view('noSiteFound');
+
+});
 
 
 // controllers

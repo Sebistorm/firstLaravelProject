@@ -32,6 +32,12 @@ class UserController extends Controller
 
     public function store () {
 
+    request()->validate([
+      'name' => ['required', 'min:2', 'max:20'],
+      'lastname' => ['required', 'min:2', 'max:20'],
+      'email' => ['required', 'min:5', 'max:30', 'email'] 
+    ]);  
+
 	 	User::create( request(['name', 'lastname', 'email']) );
 
 	 	return redirect('/users');
@@ -46,6 +52,12 @@ class UserController extends Controller
     }
 
     public function update (User $user) {
+
+    request()->validate([
+      'name' => ['required', 'min:2', 'max:20'],
+      'lastname' => ['required', 'min:2', 'max:20'],
+      'email' => ['required', 'min:5', 'max:30', 'email']
+    ]);  
 
 	 	$user->update( request(['name', 'lastname', 'email']) );
 	 	return redirect('/users');

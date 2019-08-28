@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="/css/app.css" type="text/css">
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}" type="text/css">
     <title>@yield('title')</title>
 </head>
 <body>
