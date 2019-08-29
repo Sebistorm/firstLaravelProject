@@ -30,16 +30,14 @@ Route::view('/pricing', 'pricing');
 
 Route::view('/contact', 'contact');
 
-Route::fallback(function () {
-     return view('noSiteFound');
-
-});
-
-
 // controllers
 Route::resource('/users', 'UserController');
 // Route::get('/users', 'UserController@index');
 // Route::post('/users', 'UserController@store');
 // Route::get('/users/create', 'UserController@create');
+
+
+// ajax
+Route::post('/postajax','testController@index');
 
 

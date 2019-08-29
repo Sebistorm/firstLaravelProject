@@ -3,6 +3,8 @@
 <head>
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}" type="text/css">
     <title>@yield('title')</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
 
@@ -12,5 +14,6 @@
         @yield("content")
     </div>
     
+    <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 </body>
 </html>

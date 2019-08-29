@@ -4,9 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+ require('./bootstrap');
 
-window.Vue = require('vue');
+ window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,6 +27,43 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+ const app = new Vue({
+ 	el: '#app',
+ });
+
+
+ console.log('test');
+
+ 
+
+
+ function test() {
+ 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+ 	$.ajax({
+ 		/* the route pointing to the post function */
+ 		url: '/postajax',
+ 		type: 'POST',
+ 		/* send the csrf-token and the input to the controller */
+ 		data: {_token: CSRF_TOKEN},
+ 		/* remind that 'data' is the response of the AjaxController */
+ 		success: function (ajData) { 
+ 			// console.log(ajData.data);
+ 			for (jUsers of ajData.data) {
+ 				// console.log(jUsers.name)
+ 				// user
+				var user = `
+				<div class="card" style="width: 30%; margin: 1.5%;">
+			    	<div id='profilePicture' class="card-img-top bg-dark"> </div>
+			    	<div class="card-body shadow p-3">
+			      		<h5 class="card-title">Name: ${jUsers.name} ${jUsers.lastname}</h5>
+			      		<p class="card-text">Email: ${jUsers.email}</p>
+			      		<a href="users/${jUsers.id}" class="btn btn-primary">Go to profile</a> 
+			    	</div>
+			  	</div>`
+ 				$(".ProfilesContainer").append(user); 
+ 			}
+ 		}
+ 	});
+ }
+
+ test();

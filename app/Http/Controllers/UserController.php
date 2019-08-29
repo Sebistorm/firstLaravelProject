@@ -6,67 +6,63 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use App\Http\Requests\userValidationRules;
+
+use App\Http\Resources\Users\UsersResource;
+
 class UserController extends Controller
 {
-   public function index() {
+    public function index() {
+        
+        return view ('users.index');
 
-   	$users = User::all();
+        // $users = User::all();
+        // return new UsersResource($users);
+    }
 
-   	return view ('users.index', compact('users'));
-
-   }
-
-   public function show (User $user) {
+    public function show (User $user) {
 
 
- 	return view ('users.show', compact('user'));
-	 	
+        return view ('users.show', compact('user'));
+
 
     }
 
     public function create () {
 
-	 	return view ('users.create');
+        return view ('users.create');
 
     }
 
-    public function store () {
+    public function store (userValidationRules $request) {
+        // checks the validations rules in requests->usedrValidationRules.php
+        $validated = $request->validated();
+        // creates the user
+        User::create( $validated );
 
-    request()->validate([
-      'name' => ['required', 'min:2', 'max:20'],
-      'lastname' => ['required', 'min:2', 'max:20'],
-      'email' => ['required', 'min:5', 'max:30', 'email'] 
-    ]);  
-
-	 	User::create( request(['name', 'lastname', 'email']) );
-
-	 	return redirect('/users');
+        return redirect('/users');
 
     }
 
     public function edit (User $user) {
 
-	 	return view ('users.edit', compact('user'));
+        return view ('users.edit', compact('user'));
 
 
     }
 
-    public function update (User $user) {
-
-    request()->validate([
-      'name' => ['required', 'min:2', 'max:20'],
-      'lastname' => ['required', 'min:2', 'max:20'],
-      'email' => ['required', 'min:5', 'max:30', 'email']
-    ]);  
-
-	 	$user->update( request(['name', 'lastname', 'email']) );
-	 	return redirect('/users');
+    public function update (User $user, userValidationRules $request) { 
+        // checks the validations rules in requests->usedrValidationRules.php
+        $validated = $request->validated();
+        // updates the user
+        $user->update( $validated );
+        return redirect('/users');
 
     }
 
     public function destroy (User $user) {
 
-	 	$user->delete();
-		return redirect('/users');
+        $user->delete();
+        return redirect('/users');
     }
 }
